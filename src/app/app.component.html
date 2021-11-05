@@ -1,0 +1,91 @@
+<div class="todos">
+  <div class="header">todos</div>
+  <ul class="list">
+    <li class="item">
+      <span class="expander" (click)="toggleDisplay()">
+        <svg viewBox="0 0 16 16" *ngIf="display">
+          <path 
+            fillRule="evenodd" 
+            d="
+              M1.646 4.646a.5.5 0 0 1 .708 0L8
+              10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 
+              6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
+            "
+          />
+        </svg>
+        <svg viewBox="0 0 16 16" *ngIf="!display">
+          <path 
+            fillRule="evenodd" 
+            d="
+              M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 
+              .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 
+              2.354a.5.5 0 0 1 0-.708z
+            "
+          />
+        </svg>
+      </span>
+      <input placeholder="What needs to be done?" class="input" (keyup)="keyboardEventHandler($event)">
+    </li>
+    <ng-container *ngIf="display">
+      <li class="item" *ngFor="let item of todosList" data-test-id="todo-item">
+        <label class="checkbox">
+          <input 
+            type="checkbox" 
+            [checked]="item.getValue().completed"
+            (change)="toggleCompleted(item.getKey(), item.getValue())"
+          >
+          <span>
+            <svg viewBox="0 0 16 16" *ngIf="item.getValue().completed">
+              <path 
+                d="
+                  M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 
+                  0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z
+                "
+              />
+            </svg>
+          </span>
+        </label>
+        <span
+          [style.text-decoration]="item.getValue().completed ? 'line-through' : 'none'"
+          [style.color]="item.getValue().completed ? 'var(--theme-colors-inactive)' : 'var(--theme-colors-active)'"
+        >
+          {{item.getValue().title}}
+        </span>
+      </li>
+    </ng-container>
+    <li class="footer">
+      <div>
+        {{todosList.count()}} items left
+      </div>
+      <div class="buttons">
+        <div 
+          class="button" 
+          [class.button-active]="listMode === todosListMode.All"
+          (click)="changeListMode(todosListMode.All)"
+        >
+          All
+        </div>
+        <div 
+          class="button" 
+          [class.button-active]="listMode === todosListMode.Active"
+          (click)="changeListMode(todosListMode.Active)"
+        >
+          Active
+        </div>
+        <div 
+          class="button" 
+          [class.button-active]="listMode === todosListMode.Completed"
+          (click)="changeListMode(todosListMode.Completed)"
+        >
+          Completed
+        </div>
+      </div>
+      <div 
+        class="button button-active"
+        (click)="clearCompleted()"
+      >
+        Clear completed
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,150 @@
+.todos {
+  background: linear-gradient(var(--theme-background-gradient-begin), var(--theme-background-gradient-end));
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: var(--theme-colors-header);
+  font-weight: lighter;  
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  width: calc(100% - 2rem);
+  background: var(--theme-colors-background);
+  box-shadow: 0 0 10px var(--theme-colors-shadow);  
+}
+
+@media screen and (min-width: 25rem) {
+  .header {
+    font-size: 3rem;
+  }  
+}
+
+@media screen and (min-width: 50rem) {
+  .header {
+    font-size: 4rem;
+  }  
+  .list {
+    width: 40rem;
+  }
+}
+
+.item {
+  list-style: none;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--theme-colors-border);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  list-style: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--theme-colors-footer);
+}
+
+.expander {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.expander svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--theme-colors-border);
+}
+
+.input {
+  font-size: 1.5rem;
+  color: var(--theme-colors-active);
+  border: none;
+  outline: none;
+  font-weight: lighter;  
+}
+
+.input::placeholder {
+  color: var(--theme-colors-inactive);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 1.5rem;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  user-select: none;  
+}
+
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  height: 0;  
+  width: 0;
+}
+
+.checkbox span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--theme-colors-background);
+  border: 1px solid var(--theme-colors-border);
+  border-radius: 1rem;
+}
+
+.checkbox span svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--theme-colors-primary);
+}
+
+.checkbox:hover input ~ span {
+  border-color: var(--theme-colors-primary);
+}
+
+.checkbox:hover input:active ~ span {
+  background-color: var(--theme-colors-primary);
+}
+
+.checkbox input:focus ~ span {
+  box-shadow: 0 0 0 0.125rem var(--theme-colors-primary);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;  
+}
+
+.buttons div+div {
+  margin-left: 0.5rem;
+}
+
+.button {
+  cursor: pointer;  
+}
+
+.button-active {
+  border: 2px solid var(--theme-colors-border);
+  padding: 0.25rem;
+}
