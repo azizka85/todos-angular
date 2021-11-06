@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { Todo, TodosList } from './data/todos-list';
 
@@ -22,7 +22,9 @@ export class AppComponent {
   listMode!: TodosListMode;
   todosList!: TodosList;
 
-  constructor(protected todosService: TodosService) { 
+  constructor(
+    @Inject(TodosService) protected todosService: TodosService
+  ) { 
     todosService.load();
 
     this.changeListMode(TodosListMode.All);  
