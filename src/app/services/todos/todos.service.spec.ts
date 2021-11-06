@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { Todo } from '../../data/todos-list';
-import { TODOS_STORAGE } from '../todos-storage';
 import { TodosService } from './todos.service';
 import { TodosLocalStorageService } from '../todos-local-storage/todos-local-storage.service';
 
@@ -10,13 +9,7 @@ describe('TodosService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        TodosService,
-        {
-          provide: TODOS_STORAGE,
-          useClass: TodosLocalStorageService
-        }
-      ]
+      providers: [ TodosService, TodosLocalStorageService ]
     });
     
     service = TestBed.inject(TodosService);
