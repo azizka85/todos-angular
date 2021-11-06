@@ -1,7 +1,7 @@
 <div class="todos">
   <div class="header">todos</div>
   <ul class="list">
-    <li class="item">
+    <li class="item" data-test-id="todo-input">
       <span class="expander" (click)="toggleDisplay()">
         <svg viewBox="0 0 16 16" *ngIf="display">
           <path 
@@ -54,7 +54,7 @@
       </li>
     </ng-container>
     <li class="footer">
-      <div>
+      <div data-test-id="todos-count">
         {{todosList.count()}} items left
       </div>
       <div class="buttons">
@@ -69,6 +69,7 @@
           class="button" 
           [class.button-active]="listMode === todosListMode.Active"
           (click)="changeListMode(todosListMode.Active)"
+          data-test-id="active-todos"
         >
           Active
         </div>
@@ -76,6 +77,7 @@
           class="button" 
           [class.button-active]="listMode === todosListMode.Completed"
           (click)="changeListMode(todosListMode.Completed)"
+          data-test-id="completed-todos"
         >
           Completed
         </div>
@@ -83,6 +85,7 @@
       <div 
         class="button button-active"
         (click)="clearCompleted()"
+        data-test-id="clear-completed"
       >
         Clear completed
       </div>
