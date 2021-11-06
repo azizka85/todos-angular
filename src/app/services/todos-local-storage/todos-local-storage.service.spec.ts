@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MIN_KEY, TodosList } from '../../data/todos-list';
 
+import { TODOS_STORAGE } from '../todos-storage';
 import { TodosLocalStorageService } from './todos-local-storage.service';
 
 describe('TodosLocalStorageService', () => {
@@ -9,10 +10,15 @@ describe('TodosLocalStorageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ TodosLocalStorageService ]
+      providers: [
+        {
+          provide: TODOS_STORAGE,
+          useClass: TodosLocalStorageService
+        }
+      ]
     });
     
-    service = TestBed.inject(TodosLocalStorageService);
+    service = TestBed.inject(TODOS_STORAGE);
   });
 
   it('should be created', () => {

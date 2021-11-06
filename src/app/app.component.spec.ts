@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
+import { TODOS_STORAGE } from './services/todos-storage';
 import { TodosLocalStorageService } from './services/todos-local-storage/todos-local-storage.service';
 import { TodosService } from './services/todos/todos.service';
 
@@ -13,7 +14,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [ TodosService, TodosLocalStorageService ]
+      providers: [
+        TodosService, 
+        { provide: TODOS_STORAGE, useClass: TodosLocalStorageService }
+      ]
     }).compileComponents();
 
     service = TestBed.inject(TodosService);

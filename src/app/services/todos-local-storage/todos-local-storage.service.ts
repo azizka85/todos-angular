@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { Todo, TodosList, MIN_KEY } from '../../data/todos-list';
+import { TodosStorage } from '../todos-storage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodosLocalStorageService {
+export class TodosLocalStorageService implements TodosStorage {
   saveTodos(list: TodosList) {
     const todos: Todo[] = [];
 

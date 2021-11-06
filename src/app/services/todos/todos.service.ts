@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 import { Todo, TodosList, MIN_KEY } from '../../data/todos-list';
-
-import { TodosLocalStorageService } from '../todos-local-storage/todos-local-storage.service';
+import { TodosStorage, TODOS_STORAGE } from '../todos-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class TodosService {
   protected active: TodosList = new TodosList();
   protected completed: TodosList = new TodosList();
 
-  constructor(protected storage: TodosLocalStorageService) { }
+  constructor(@Inject(TODOS_STORAGE) protected storage: TodosStorage) { }
 
   get todosList() {
     return this.todos;
